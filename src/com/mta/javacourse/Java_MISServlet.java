@@ -7,14 +7,18 @@ public class Java_MISServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		resp.setContentType("text/html");
 		
+		resp.getWriter().println("<h2>Exercise 2:</h2>");
+		
 		int num1 = 4, num2 = 3, num3 = 7;
 		
 		int result = (num1 + num2) * num3;
 		
-		String resultStr = new String("<h1>Result of (" + num1 + "+" + num2 + ")*" + num3 + "=" + result + "</h1>");
+		String resultStr = new String("<p><b>Result of (" + num1 + "+" + num2 + ")*" + num3 + "=" + result + "</b></p>");
 		
 		resp.getWriter().println(resultStr);
 
+		resp.getWriter().println("<h2>Exercise 3:</h2>");
+		
 		int radius = 50;
 		
 		String line1 = new String("<p><b>Calculation 1:</b> Area of circle with radius " + radius + " is : " + calculateCircleArea(radius) + " square-cm.</p>");
@@ -36,11 +40,11 @@ public class Java_MISServlet extends HttpServlet {
 		
 	}
 	
-	double calculateCircleArea(int radius){
+	public double calculateCircleArea(int radius){
 		return Math.PI*(Math.pow(radius, 2));
 	}
 	
-	double calculateLengthOfOpposite(double angle, int hypotenuseLength){
+	public double calculateLengthOfOpposite(double angle, int hypotenuseLength){
 		return Math.sin(angle)*hypotenuseLength;
 	}
 	
