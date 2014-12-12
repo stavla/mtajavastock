@@ -5,27 +5,11 @@ xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet>
-		<servlet-name>Java_MIS</servlet-name>
-		<servlet-class>com.mta.javacourse.Java_MISServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Java_MIS</servlet-name>
-		<url-pattern>/java_mis</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<servlet-name>Exercise 04</servlet-name>
-		<servlet-class>com.mta.javacourse.StockDetailsServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Exercise 04</servlet-name>
-		<url-pattern>/stockdetails</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<servlet-name>Exercise 05</servlet-name>
+		<servlet-name>Portfolio</servlet-name>
 		<servlet-class>com.mta.javacourse.servlet.PortfolioServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>Exercise 05</servlet-name>
+		<servlet-name>Portfolio</servlet-name>
 		<url-pattern>/portfolio</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
