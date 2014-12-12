@@ -3,6 +3,10 @@ package com.mta.javacourse.model;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+/**
+ * a class that representing stock 
+ * @author STAV 
+ */
 public class Stock {
 	
 	private String symbol;
@@ -11,6 +15,13 @@ public class Stock {
 	private Date date;
 	private SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 	
+	/**
+	 * constructor set symbol, ask, bid, date in class 
+	 * @param symbol  a stock symbol
+	 * @param ask a stock ask proce
+	 * @param bid a stock bid price
+	 * @param date a stock date
+	 */
 	public Stock(String symbol, float ask, float bid, Date date){
 		setSymbol(symbol);
 		setAsk(ask);
@@ -18,6 +29,10 @@ public class Stock {
 		setDate(date);
 	}
 	
+	/**
+	 * copy constructor duplicates stock
+	 * @param stock - an existing stock
+	 */
 	public Stock(Stock stock){
 		setSymbol(stock.getSymbol());
 		setAsk(stock.getAsk());
@@ -57,6 +72,10 @@ public class Stock {
 		this.date = date;
 	}
 	
+	/**
+	 * method gets html string that represent the stock
+	 * @return an html string that represent the stock
+	 */
 	public String getHtmlDescription() {
 		return "<b>Stock symbol:</b> " + getSymbol() + ", <b>ask:</b> " + getAsk() + ", <b>bid:</b> " + getBid() + ", <b>date:</b> " + sdf.format(getDate());		
 	}
