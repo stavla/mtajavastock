@@ -1,4 +1,4 @@
-package com.mta.javacourse;
+package com.mta.javacourse.model;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -6,10 +6,24 @@ import java.util.*;
 public class Stock {
 	
 	private String symbol;
-	private float ask; 
+	private float ask;
 	private float bid;
 	private Date date;
 	private SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+	
+	public Stock(String symbol, float ask, float bid, Date date){
+		setSymbol(symbol);
+		setAsk(ask);
+		setBid(bid);
+		setDate(date);
+	}
+	
+	public Stock(Stock stock){
+		setSymbol(stock.getSymbol());
+		setAsk(stock.getAsk());
+		setBid(stock.getBid());
+		setDate(stock.getDate());
+	}
 	
 	public String getSymbol() {
 		return symbol;

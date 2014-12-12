@@ -5,29 +5,16 @@ import java.util.*;
 
 import javax.servlet.http.*;
 
+import com.mta.javacourse.model.Stock;
+
 @SuppressWarnings("serial")
 public class StockDetailsServlet extends HttpServlet {
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		
-		Stock st1 = new Stock();
-		Stock st2 = new Stock();
-		Stock st3 = new Stock();
-		
-		st1.setSymbol("PIH");
-		st1.setAsk(12.4f);
-		st1.setBid(13.1f);
-		st1.setDate(new GregorianCalendar(2014, 10, 15).getTime());
-		
-		st2.setSymbol("AAL");
-		st2.setAsk(5.5f);
-		st2.setBid(5.78f);
-		st2.setDate(new GregorianCalendar(2014, 10, 15).getTime());
-		
-		st3.setSymbol("CAAS");
-		st3.setAsk(31.5f);
-		st3.setBid(31.2f);
-		st3.setDate(new GregorianCalendar(2014, 10, 15).getTime());
+		Stock st1 = new Stock("PIH", 12.4f, 13.1f, new GregorianCalendar(2014, 10, 15).getTime());
+		Stock st2 = new Stock("AAL", 5.5f, 5.78f, new GregorianCalendar(2014, 10, 15).getTime());
+		Stock st3 = new Stock("CAAS", 31.5f, 31.2f, new GregorianCalendar(2014, 10, 15).getTime());
 		
 		resp.getWriter().println(st1.getHtmlDescription() + "<br>");
 		resp.getWriter().println(st2.getHtmlDescription() + "<br>");

@@ -5,8 +5,9 @@ import java.io.IOException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.mta.javacourse.Stock;
+
 import com.mta.javacourse.model.Portfolio;
+import com.mta.javacourse.model.Stock;
 import com.mta.javacourse.service.PortfolioService;
 
 @SuppressWarnings("serial")
