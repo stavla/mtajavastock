@@ -37,7 +37,8 @@ public class Stock {
 		setSymbol(stock.getSymbol());
 		setAsk(stock.getAsk());
 		setBid(stock.getBid());
-		setDate(stock.getDate());
+		//date = new Date(stock.getDate());
+		//setDate(stock.getDate());
 	}
 	
 	public String getSymbol() {
