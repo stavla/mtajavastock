@@ -9,7 +9,8 @@ import java.util.*;
 public class Portfolio {
 
 	private final static int MAX_PORTFOLIO_SIZE = 5;
-	public enum ALGO_RECOMMENDATION {
+	
+	private static enum ALGO_RECOMMENDATION {
 		DO_NOTHING,
 		BUY,
 		SELL
@@ -26,10 +27,12 @@ public class Portfolio {
 	 * @param title - name of portfolio
 	 */
 	public Portfolio(String title) {
+		
 		setTitle(title);
 		stocks = new Stock[MAX_PORTFOLIO_SIZE];
 		stockStatus = new StockStatus[MAX_PORTFOLIO_SIZE];
 		portfolioSize = 0;
+		balance = 0;
 	}
 	
 	/**
@@ -37,15 +40,15 @@ public class Portfolio {
 	 * @param portfolio - an existing portfolio
 	 */
 	public Portfolio(Portfolio portfolio) {
-		this("Copy of " + portfolio.getTitle());
+		
+		this(portfolio.getTitle());
 		
 		Stock[] stocks = portfolio.getStocks();
 		
 		int size = portfolio.getPortfolioSize();
 		
-		for (int i=0; i < size; i++) {
-			addStock(stocks[i]);
-			stockStatus[i] = new StockStatus(portfolio.stocks[i]);
+		for (int i = 0; i < size; i++) {
+			addStock(new Stock(stocks[i]));
 		}	
 	}
 	
@@ -58,10 +61,6 @@ public class Portfolio {
 	}
 
 	public int getPortfolioSize() {
-		return portfolioSize;
-	}
-	
-	public int getSize(){
 		return portfolioSize;
 	}
 	
@@ -107,7 +106,7 @@ public class Portfolio {
 		
 		htmlString += "Total portfolio value: $" + getTotalValue() + "<br>";
 		htmlString += "Total stocks value: $" + getStocksValue() + "<br>";
-		htmlString += "balance: $" + getBalance();
+		htmlString += "balance: $" + getBalance() +"<br>";
 
 		for (int i=0; i < portfolioSize; i++) {
 			htmlString += stocks[i].getHtmlDescription() + "<br>";
@@ -121,15 +120,15 @@ public class Portfolio {
 	 * @param stock - a stock to added to protfolio
 	 */
 	public boolean addStock(Stock stock) {
-		if (portfolioSize >= MAX_PORTFOLIO_SIZE) {
-			System.out.println("Can't add new stock, portfolio can only have " + portfolioSize + " stocks.");
-			
+		
+		if (portfolioSize >= MAX_PORTFOLIO_SIZE) 	
 			return false;
-		}
+	
+		String symbol = stock.getSymbol();
 		
 		for(int i = 0; i < portfolioSize; i++) {
-			if(stock.getSymbol() == stockStatus[i].symbol) {
-				System.out.println(stock.getSymbol() + " already exists in the portfolio.");
+			if(stocks[i].getSymbol() == symbol) {
+				System.out.println(symbol + " already exists in the portfolio.");
 				
 				return false;
 			}
@@ -180,13 +179,17 @@ public class Portfolio {
 	 * method gets amount and check it. if negative - print error, else set in balance
 	 * @return current balance
 	 * */
-	public float updateBalanc(float amount){
-		if(amount < 0){
-			System.out.println("<b>Error: negative amount! </b>");
-			return balance;
+	public boolean updateBalance(float amount) {
+		
+		if(balance + amount < 0) {
+			System.out.println("<b>Error: balance can't be negative! </b>");
+			
+			return false;
 		}
-		else
-			return balance = amount;			
+		
+		balance += amount;
+		
+			return true;			
 	}
 	
 	/**
@@ -217,7 +220,7 @@ public class Portfolio {
 		}
 		
 		if (status.stockQuantity < quantity) {
-			System.out.println("only " + status.stockQuantity + " " + status.symbol + " stocks owend. cannot sell " + quantity + ".");
+			System.out.println("canno't sell " + quantity + " , only " + status.stockQuantity + " " + status.symbol + " stocks owend.");
 			
 			return false;
 		}
@@ -255,8 +258,8 @@ public class Portfolio {
 			return false;
 		}
 		
-		if (status.currentAsk * quantity < balance) {
-			System.out.println("only $" + balance + " in the balance. cannot buy " + quantity + " " + status.symbol + "stocks. (value of $" + status.currentAsk * quantity + ")");
+		if (status.currentAsk * quantity > balance) {
+			System.out.println("canno't buy " + quantity + " " + status.symbol + " stocks (value of $" + status.currentAsk * quantity + "), only $" +balance + "in the balance.");
 			
 			return false;
 		}
@@ -274,7 +277,8 @@ public class Portfolio {
 	 * @return the index of the stock
 	 * */
 	private int findIndexInStock(String symbol) {
-		for(int i = 0; i<portfolioSize; i++) {
+		
+		for(int i = 0; i < portfolioSize; i++) {
 			if(stocks[i].getSymbol() == symbol) {
 				return i;
 			}
@@ -302,7 +306,7 @@ public class Portfolio {
 			this.symbol = stock.getSymbol();
 			this.currentAsk = stock.getAsk();
 			this.currentBid = stock.getBid();
-			this.date = stock.getDate();
+			this.date = new Date(stock.getDate().getTime());
 			this.recommendation = ALGO_RECOMMENDATION.DO_NOTHING;
 			this.stockQuantity = 0;
 		}
