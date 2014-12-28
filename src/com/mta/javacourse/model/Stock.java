@@ -13,7 +13,7 @@ public class Stock {
 	private float ask;
 	private float bid;
 	private Date date;
-	private SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+	private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	
 	/**
 	 * constructor set symbol, ask, bid, date in class 

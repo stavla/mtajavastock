@@ -9,9 +9,9 @@ public class PortfolioService {
 	
 	public Portfolio getPortfolio() {
 		
-		Stock st1 = new Stock("PIH", 10f, 8.5f, new GregorianCalendar(2014, 12, 15).getTime());
-		Stock st2 = new Stock("AAL", 30f, 25.5f, new GregorianCalendar(2014, 12, 15).getTime());
-		Stock st3 = new Stock("CAAS", 20f, 15.5f, new GregorianCalendar(2014, 12, 15).getTime());
+		Stock st1 = new Stock("PIH", 10f, 8.5f, new GregorianCalendar(2014, 11, 15).getTime());
+		Stock st2 = new Stock("AAL", 30f, 25.5f, new GregorianCalendar(2014, 11, 15).getTime());
+		Stock st3 = new Stock("CAAS", 20f, 15.5f, new GregorianCalendar(2014, 11, 15).getTime());
 		
 		Portfolio myPortfolio = new Portfolio("Exercise 7 portfolio");
 		
