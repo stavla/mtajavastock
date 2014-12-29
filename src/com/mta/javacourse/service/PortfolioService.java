@@ -13,7 +13,7 @@ public class PortfolioService {
 		Stock st2 = new Stock("AAL", 30f, 25.5f, new GregorianCalendar(2014, 11, 15).getTime());
 		Stock st3 = new Stock("CAAS", 20f, 15.5f, new GregorianCalendar(2014, 11, 15).getTime());
 		
-		Portfolio myPortfolio = new Portfolio("Exercise 7 portfolio");
+		Portfolio myPortfolio = new Portfolio("My portfolio");
 		
 		myPortfolio.addStock(st1);
 		myPortfolio.addStock(st2);

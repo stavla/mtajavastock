@@ -18,7 +18,7 @@ public class Stock {
 	/**
 	 * constructor set symbol, ask, bid, date in class 
 	 * @param symbol  a stock symbol
-	 * @param ask a stock ask proce
+	 * @param ask a stock ask price
 	 * @param bid a stock bid price
 	 * @param date a stock date
 	 */
