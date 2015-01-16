@@ -17,10 +17,14 @@ public class PortfolioServlet extends HttpServlet {
 	
 		PortfolioService portfolioService = new PortfolioService();
 		
-		Portfolio portfolio1 = portfolioService.getPortfolio();
-		
-		resp.getWriter().println(portfolio1.getHtmlString());
+		try{
+			Portfolio portfolioA = portfolioService.getPortfolio();
+			
+			resp.getWriter().println(portfolioA.getHtmlString());
+		}catch (Exception e){
+			e.printStackTrace();
+			resp.getWriter().println("<b>Error: " + e.getMessage() + "</b>");
 		
 	}
-	
+}
 }

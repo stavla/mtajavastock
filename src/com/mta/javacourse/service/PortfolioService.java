@@ -4,10 +4,11 @@ import java.util.GregorianCalendar;
 
 import com.mta.javacourse.model.Portfolio;
 import com.mta.javacourse.model.Stock;
+import com.mta.javacourse.exception.*;
 
 public class PortfolioService {
 	
-	public Portfolio getPortfolio() {
+	public Portfolio getPortfolio() throws BalanceException, PortfolioFullException, StockAlreadyExistsException,StockNotExistException, NotEnoughStocksException, NotEnoughBalanceException {
 		
 		Stock st1 = new Stock("PIH", 10f, 8.5f, new GregorianCalendar(2014, 11, 15).getTime());
 		Stock st2 = new Stock("AAL", 30f, 25.5f, new GregorianCalendar(2014, 11, 15).getTime());
@@ -17,6 +18,7 @@ public class PortfolioService {
 		
 		myPortfolio.addStock(st1);
 		myPortfolio.addStock(st2);
+		myPortfolio.addStock(st3);
 		myPortfolio.addStock(st3);
 		
 		myPortfolio.updateBalance(10000);
