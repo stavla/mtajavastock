@@ -1,5 +1,4 @@
 package com.mta.javacourse.model;
-
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -13,7 +12,10 @@ public class Stock {
 	private float ask;
 	private float bid;
 	private Date date;
-	private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	private transient SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	
+	public Stock() {
+	}
 	
 	/**
 	 * constructor set symbol, ask, bid, date in class 
@@ -22,7 +24,7 @@ public class Stock {
 	 * @param bid a stock bid price
 	 * @param date a stock date
 	 */
-	public Stock(String symbol, float ask, float bid, Date date){
+	public Stock(String symbol, float ask, float bid, Date date) {
 		setSymbol(symbol);
 		setAsk(ask);
 		setBid(bid);
@@ -37,8 +39,7 @@ public class Stock {
 		setSymbol(stock.getSymbol());
 		setAsk(stock.getAsk());
 		setBid(stock.getBid());
-		//date = new Date(stock.getDate());
-		//setDate(stock.getDate());
+		setDate(new Date(stock.getDate().getTime()));
 	}
 	
 	public String getSymbol() {

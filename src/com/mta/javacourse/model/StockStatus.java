@@ -1,6 +1,7 @@
 package com.mta.javacourse.model;
 
 import java.util.Date;
+import com.mta.javacourse.model.Portfolio.ALGO_RECOMMENDATION;
 
 /**
  * a class that representing stock's Status 
@@ -8,13 +9,12 @@ import java.util.Date;
  */
 public class StockStatus extends Stock {
 	
-	private static enum ALGO_RECOMMENDATION {
-		DO_NOTHING,
-		BUY,
-		SELL
+	private ALGO_RECOMMENDATION recommendation = ALGO_RECOMMENDATION.DO_NOTHING;;
+	private int stockQuantity = 0;
+	
+	public StockStatus() {
+		super();
 	}
-	private ALGO_RECOMMENDATION recommendation;
-	private int stockQuantity;
 	
 	/**
 	 * constructs new stock status  
@@ -25,9 +25,14 @@ public class StockStatus extends Stock {
 	 */
 	public StockStatus(String symbol, float ask, float bid, Date date) {
 		super(symbol, ask, bid, date);
-		
-		recommendation = ALGO_RECOMMENDATION.DO_NOTHING;
-		stockQuantity = 0;
+	}
+	
+	/**
+	 * constructs a new stockStatus from an existing Stock
+	 * @param stock - an existing stock
+	 */
+	public StockStatus(Stock stock) {
+		this(stock.getSymbol(), stock.getAsk(), stock.getBid(), new Date(stock.getDate().getTime()));
 	}
 
 	/**
@@ -36,6 +41,9 @@ public class StockStatus extends Stock {
 	 */
 	public StockStatus(StockStatus stockStatus) {
 		this(stockStatus.getSymbol(), stockStatus.getAsk(), stockStatus.getBid(), new Date(stockStatus.getDate().getTime()));
+		
+		this.recommendation = stockStatus.getRecommendation();
+		this.stockQuantity = stockStatus.getStockQuantity();
 	}
 
 	public ALGO_RECOMMENDATION getRecommendation() {
@@ -53,7 +61,4 @@ public class StockStatus extends Stock {
 	public void setStockQuantity(int stockQuantity) {
 		this.stockQuantity = stockQuantity;
 	}
-	
-	
-
 }

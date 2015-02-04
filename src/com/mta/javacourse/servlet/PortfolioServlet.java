@@ -1,30 +1,38 @@
 package com.mta.javacourse.servlet;
 
-import java.io.IOException;
+import com.mta.javacourse.dto.PortfolioDto;
+import com.mta.javacourse.dto.PortfolioTotalStatus;
+import com.mta.javacourse.model.StockStatus;
 
-import javax.servlet.http.HttpServlet;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.mta.javacourse.model.Portfolio;
-import com.mta.javacourse.model.Stock;
-import com.mta.javacourse.service.PortfolioService;
+public class PortfolioServlet extends AbstractAlgoServlet {
 
-@SuppressWarnings("serial")
-public class PortfolioServlet extends HttpServlet {
-	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		resp.setContentType("text/html");
-	
-		PortfolioService portfolioService = new PortfolioService();
+	private static final long serialVersionUID = 1L;
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		try{
-			Portfolio portfolioA = portfolioService.getPortfolio();
-			
-			resp.getWriter().println(portfolioA.getHtmlString());
-		}catch (Exception e){
-			e.printStackTrace();
-			resp.getWriter().println("<b>Error: " + e.getMessage() + "</b>");
+		resp.setContentType("application/json");
 		
+		PortfolioTotalStatus[] totalStatus = portfolioService.getPortfolioTotalStatus();
+		StockStatus[] stockStatusArray = portfolioService.getPortfolio().getStocks();
+		List<StockStatus> stockStatusList = new ArrayList<>();
+		for (StockStatus ss : stockStatusArray) {
+			if(ss != null)
+				stockStatusList.add(ss);
+		}
+		
+		PortfolioDto pDto = new PortfolioDto();
+		pDto.setTitle(portfolioService.getPortfolio().getTitle());
+		pDto.setTotalStatus(totalStatus);
+		pDto.setStockTable(stockStatusList);
+		resp.getWriter().print(withNullObjects().toJson(pDto));
 	}
-}
 }
